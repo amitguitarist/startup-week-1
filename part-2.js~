@@ -1,0 +1,48 @@
+
+var num;
+var divisor, remainder;
+var prime_status;
+
+var fs = require('fs');
+
+var num_list = [];
+
+for (num = 2; num < 1000; num++)
+{
+   for (divisor = 1; divisor <= num; divisor++)
+   {
+        remainder = num % divisor;
+        if ((remainder == 0) && (divisor != num) && (divisor != 1))
+	{
+         prime_status = 'false';             
+         break; 
+	}
+ 
+        else
+        {
+         prime_status = 'true';  
+        } 
+		  
+   }
+
+   if (prime_status == 'true')
+   {   
+   num_list.push(num);
+   }
+    
+}
+
+console.log(num_list.length);
+console.log(num_list);
+
+fs.writeFile("PrimeNumberList.txt", num_list, function(err){
+	if(err) {
+	console.log(err);
+	}
+	else
+	{
+	console.log("The file was saved!");
+ 	}
+});
+
+
